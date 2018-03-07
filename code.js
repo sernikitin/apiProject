@@ -1,31 +1,31 @@
 $(document).ready(function () {
 
-    // function displayPic() {
+    function displayPic() {
 
-    //     var queryURL = "https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_INTRADAY&symbol=BTC&market=EUR&interval=1min&apikey=8YSO02BC18I74O6D";
-    //     $.ajax({
-    //         url: queryURL,
-    //         method: "GET"
-    //     }).done(function (response) {
-    //         console.log(response)
-    //     });
-    // }
-    // function searchForGif(response) {
-    //     // $("#dopring").empty()
-    //     var results = response.data;
-    //     console.log(results)
+        var queryURL = "https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_INTRADAY&symbol=BTC&market=EUR&interval=1min&apikey=8YSO02BC18I74O6D";
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).done(function (response) {
+            console.log(response)
+        });
+    }
+    function searchForGif(response) {
+        // $("#dopring").empty()
+        var results = response.data;
+        console.log(results)
 
-    // }
-
-
-    // $("#add-pic").on("click", function (event) {
-    //     event.preventDefault();
-    //     displayPic()
+    }
 
 
-    // });
+    $("#add-pic").on("click", function (event) {
+        event.preventDefault();
+        displayPic()
 
 
+    });
+
+    displayPic()
     var limit = 10000;    //increase number of dataPoints by increasing the limit
     var y = 100;    
     var data = [];
