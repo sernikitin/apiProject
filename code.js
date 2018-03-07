@@ -18,14 +18,9 @@ $(document).ready(function () {
     }
 
 
-    $("#add-pic").on("click", function (event) {
-        event.preventDefault();
-        displayPic()
-
-
-    });
 
     displayPic()
+
     var limit = 10000;    //increase number of dataPoints by increasing the limit
     var y = 100;    
     var data = [];
