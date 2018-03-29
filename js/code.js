@@ -1,49 +1,61 @@
 
-    //stock API
-    var symbol = "placeholder"
-    //stock API
-    function info() {
-        var company = symbol;
-        console.log(company);
-        var queryURL = "https://api.iextrading.com/1.0/stock/"+ company + "/initial-load?last=3";
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-            console.log(response)
-            var results = response.company;
-            console.log(results)
-            var compName = results.companyName
-            var compDescription =results.description
-            var compExchange = results.exchange
-            var compIndustry =results.industry
-            var compSector= results.sector
-            var compWebsite =results.website
+//stock API
+var symbol = "placeholder"
+//stock API
+function info() {
+    var company = symbol;
+    console.log(company);
+    var queryURL = "https://api.iextrading.com/1.0/stock/" + company + "/initial-load?last=3";
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+
+        console.log(response)
+        var results = response.company;
+        console.log(results)
+        //location to drop 
+        var newLocation = $("<div class='newstuff'>")
+        //collecting info from API          
+        var compName = results.companyName
+        var compDescription = results.description
+        var compExchange = results.exchange
+        var compIndustry = results.industry
+        var compSector = results.sector
+        var compWebsite = results.website
+        //pick div and title 
+        var dropTitle = $("<div class = 'compWebsite'>").html(compWebsite)
+        var dropTitleTo = $("<div class = 'compSector'>").html(compSector)
+        //clean append
+        newLocation.append(dropTitleTo);
+        newLocation.append(dropTitle);
+
+        $("#info").append(newLocation)
+        // $("#info").append(compExchange).addClass("<div>").attr("class","new")
+        //  $("#info").append(compName).addClass("<div>").attr("class","new")
+        // $("#info").append(compName).addClass("<div>").attr("class","new")
 
 
-            $("#info").append(compName).addClass("<div>").attr("class","new")
+        // for ( var i =0; i<results.length; i++){
+        //     var locationComp = $("<div class ='new'>")
+        //     var moveTo= results[i].company;
+        //     console
+        //     locationComp.append(moveTo);
+        //     $("#info").append(locationComp);
+        // }
 
 
-            // for ( var i =0; i<results.length; i++){
-            //     var locationComp = $("<div class ='new'>")
-            //     var moveTo= results[i].company;
-            //     console
-            //     locationComp.append(moveTo);
-            //     $("#info").append(locationComp);
-            // }
-            
+    });
+}
 
-        });
-    }
-    
-    $(".grab").on("click", function(){
-        symbol = $(".userInput").val();
-         info();
-     })
-    
-       
-            
-        
+$(".grab").on("click", function () {
+    symbol = $(".userInput").val();
+    info();
+})
+
+
+
+
 
 
 //line
@@ -51,7 +63,7 @@ var ctxL = document.getElementById("lineChart").getContext('2d');
 var myLineChart = new Chart(ctxL, {
     type: 'line',
     data: {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        labels: ["January", "February", "March", "April", "May", "June", "July", "February", "March", "April", "May", "June", "July"],
         datasets: [
             {
                 label: "My First dataset",
@@ -84,20 +96,20 @@ var myLineChart = new Chart(ctxL, {
                 data: [28, 48, 40, 19, 86, 27, 90]
             },
             {
-                label: "My Second dataset",
+                label: "My",
                 fillColor: "rgba(151,187,205,0.2)",
                 strokeColor: "rgba(151,187,205,1)",
                 pointColor: "rgba(151,187,205,1)",
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(151,187,205,1)",
-                data: [20, 15, 25, 89, 12, 33, 66]
+                data: [20, 15, 25, 89, 12, 33, 66, 9, 8, 20, 15, 25, 89, 12, 33, 66, 9, 8]
             }
         ]
     },
     options: {
         responsive: true
-    }    
+    }
 });
-            
+
 
