@@ -1,27 +1,30 @@
 
+//stock API
+function info() {
+    var company = symbol;
+    console.log(company);
+    var queryURL = "https://api.iextrading.com/1.0/stock/"+ company + "/initial-load?last=3";
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+        console.log(response)
+    });
+}
 
-
-    //stock API
-    function info() {
-
-        var queryURL = "https://api.iextrading.com/1.0/stock/aapl/batch?types=quote,news,chart&range=1m&last=10";
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-            console.log(response)
-        });
-    }
-    function searchForGif(response) {
-        // $("#dopring").empty()
+function searchForGif(response) {
+    info().then(function(){
         var results = response.data;
         console.log(results)
+    });
+}
 
-    }
+var symbol = "placeholder"
 
-
-    info()
-
+$(".grab").on("click", function(){
+   symbol = $(".userInput").val();
+    info();
+})
 
 //line
 var ctxL = document.getElementById("lineChart").getContext('2d');
@@ -74,7 +77,7 @@ var myLineChart = new Chart(ctxL, {
     },
     options: {
         responsive: true
-    }    
+    }
 });
-            
+
 
