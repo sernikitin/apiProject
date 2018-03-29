@@ -1,4 +1,7 @@
 
+var symbol = "placeholder"
+
+
 //stock API
 function info() {
     var company = symbol;
@@ -12,19 +15,16 @@ function info() {
     });
 }
 
-function searchForGif(response) {
-    info().then(function(){
-        var results = response.data;
-        console.log(results)
-    });
-}
-
-var symbol = "placeholder"
-
 $(".grab").on("click", function(){
-   symbol = $(".userInput").val();
-    info();
-})
+    symbol = $(".userInput").val();
+     info();
+ })
+// function searchForGif(response) {
+//     info().then(function(){
+//         var results = response.data;
+//         console.log(results)
+//     });
+// }
 
 //line
 var ctxL = document.getElementById("lineChart").getContext('2d');
