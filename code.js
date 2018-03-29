@@ -1,12 +1,14 @@
 $(document).ready(function () {
 
-    function displayPic() {
 
-        var queryURL = "https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_INTRADAY&symbol=BTC&market=EUR&interval=1min&apikey=8YSO02BC18I74O6D";
+    //stock API
+    function info() {
+
+        var queryURL = "https://api.iextrading.com/1.0/stock/aapl/batch?types=quote,news,chart&range=1m&last=10";
         $.ajax({
             url: queryURL,
             method: "GET"
-        }).done(function (response) {
+        }).then(function (response) {
             console.log(response)
         });
     }
@@ -18,39 +20,9 @@ $(document).ready(function () {
     }
 
 
+    info()
 
-    displayPic()
 
-    var limit = 10000;    //increase number of dataPoints by increasing the limit
-    var y = 100;    
-    var data = [];
-    var dataSeries = { type: "line" };
-    var dataPoints = [];
-    for (var i = 0; i < limit; i += 1) {
-        y += Math.round(Math.random() * 10 - 5);
-        dataPoints.push({
-            x: i,
-            y: y
-        });
-    }
-    dataSeries.dataPoints = dataPoints;
-    data.push(dataSeries);
-    
-    //Better to construct options first and then pass it as a parameter
-    var options = {
-        zoomEnabled: true,
-        animationEnabled: true,
-        title: {
-            text: "Try Zooming - Panning"
-        },
-        axisY: {
-            includeZero: false
-        },
-        data: data  // random data
-    };
-    
-    $("#chartContainer").CanvasJSChart(options);
-    
 
 
 });
