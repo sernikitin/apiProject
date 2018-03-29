@@ -1,30 +1,50 @@
 
-var symbol = "placeholder"
+    //stock API
+    var symbol = "placeholder"
+    //stock API
+    function info() {
+        var company = symbol;
+        console.log(company);
+        var queryURL = "https://api.iextrading.com/1.0/stock/"+ company + "/initial-load?last=3";
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response)
+            var results = response.company;
+            console.log(results)
+            var compName = results.companyName
+            var compDescription =results.description
+            var compExchange = results.exchange
+            var compIndustry =results.industry
+            var compSector= results.sector
+            var compWebsite =results.website
 
 
-//stock API
-function info() {
-    var company = symbol;
-    console.log(company);
-    var queryURL = "https://api.iextrading.com/1.0/stock/"+ company + "/initial-load?last=3";
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
-        console.log(response)
-    });
-}
+            $("#info").append(compName).addClass("<div>").attr("class","new")
 
-$(".grab").on("click", function(){
-    symbol = $(".userInput").val();
-     info();
- })
-// function searchForGif(response) {
-//     info().then(function(){
-//         var results = response.data;
-//         console.log(results)
-//     });
-// }
+
+            // for ( var i =0; i<results.length; i++){
+            //     var locationComp = $("<div class ='new'>")
+            //     var moveTo= results[i].company;
+            //     console
+            //     locationComp.append(moveTo);
+            //     $("#info").append(locationComp);
+            // }
+            
+
+        });
+    }
+    
+    $(".grab").on("click", function(){
+        symbol = $(".userInput").val();
+         info();
+     })
+    
+       
+            
+        
+
 
 //line
 var ctxL = document.getElementById("lineChart").getContext('2d');
@@ -77,7 +97,7 @@ var myLineChart = new Chart(ctxL, {
     },
     options: {
         responsive: true
-    }
+    }    
 });
-
+            
 
